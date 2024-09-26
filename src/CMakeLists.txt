@@ -3,7 +3,7 @@
 if (CMAKE_COMPILER_IS_GNUCXX OR (${CMAKE_CXX_COMPILER_ID} MATCHES "Clang"))
     set(PJ64_PARALLEL_RDP_CXX_FLAGS -Wall -Wextra -Wno-missing-field-initializers -Wno-empty-body -ffast-math -Wno-unused-parameter -pthread -fwrapv)
 elseif (MSVC)
-    set(PJ64_PARALLEL_RDP_CXX_FLAGS /O2 /fp:fast /MT /D_CRT_SECURE_NO_WARNINGS /wd4267 /wd4244 /wd4309 /wd4005 /MP /DNOMINMAX)
+    set(PJ64_PARALLEL_RDP_CXX_FLAGS /fp:fast /MT /D_CRT_SECURE_NO_WARNINGS /wd4267 /wd4244 /wd4309 /wd4005 /MP /DNOMINMAX)
 endif()
 
 # Include CMakeLists.txt for parallel-rdp-standalone source.
