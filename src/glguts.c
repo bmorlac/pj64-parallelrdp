@@ -213,7 +213,7 @@ static GLuint gl_shader_link(GLuint vert, GLuint frag)
 void screen_write(struct frame_buffer *fb)
 {
     bool buffer_size_changed = tex_width[rotate_buffer] != fb->width || tex_height[rotate_buffer] != fb->height;
-    char* offset = (char*)(rotate_buffer * buffer_size);
+    uint32_t offset = rotate_buffer * buffer_size;
 
     // check if the framebuffer size has changed
     if (buffer_size_changed)
@@ -224,13 +224,13 @@ void screen_write(struct frame_buffer *fb)
         glPixelStorei(GL_UNPACK_ROW_LENGTH, fb->pitch);
         // reallocate texture buffer on GPU
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, tex_width[rotate_buffer],
-                     tex_height[rotate_buffer], 0, TEX_FORMAT, TEX_TYPE, offset);
+                     tex_height[rotate_buffer], 0, TEX_FORMAT, TEX_TYPE, &offset);
     }
     else
     {
         // copy local buffer to GPU texture buffer
         glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, tex_width[rotate_buffer], tex_height[rotate_buffer],
-                        TEX_FORMAT, TEX_TYPE, offset);
+                        TEX_FORMAT, TEX_TYPE, &offset);
     }
 
     rotate_buffer = (rotate_buffer + 1) % TEX_NUM;

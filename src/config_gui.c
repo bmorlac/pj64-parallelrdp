@@ -38,7 +38,7 @@ void GetDesktopResolution(int horizontal, int vertical)
 	vertical = desktop.bottom;
 }
 
-BOOL CALLBACK DlgFunc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
+INT_PTR CALLBACK DlgFunc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
 	switch (uMsg)
 	{

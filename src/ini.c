@@ -42,7 +42,7 @@ void ini_init()
 bool ini_set_value(const char* key, int value)
 {
 	char num_str[10];
-	itoa(value, num_str, 10);
+	_itoa(value, num_str, 10);
     return WritePrivateProfileStringA("Settings", key, num_str, ini_file);
 }
 
